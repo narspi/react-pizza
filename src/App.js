@@ -4,27 +4,52 @@ import { Header } from "./componens";
 import { Home,Cart } from "./pages";
 import axios from 'axios';
 import {connect} from "react-redux";
+import setPizzaz from './redux/action/pizzaz';
 
-const App = ({  }) => {
-  React.useEffect(()=>{
+// const App = ({ setPizzaz }) => {
+//   React.useEffect(()=>{
+//     axios.get('http://localhost:3000/db.json').then(({data})=>{
+//       setPizzaz(data.pizzas); 
+//     });
+//   },[]);
+
+//   return (
+//     <div className="wrapper">
+//       <Header />
+//       <div className="content">
+//         <Route path="/"  exact >
+//           <Home  />
+//         </Route>
+//         <Route path="/cart" component={Cart} exact/>
+//       </div>
+//     </div>
+//   );
+// };
+
+
+class App extends React.Component {
+
+  componentDidMount() {
     axios.get('http://localhost:3000/db.json').then(({data})=>{
-      console.log(data);
-      // setPizzaz(data.pizzas); 
+      this.props.changePizzaz(data.pizzas)
     });
-  },[]);
+  }
 
-  return (
+  render(){
+    console.log(this.props)
+    return (
     <div className="wrapper">
-      <Header />
-      <div className="content">
-        <Route path="/"  exact >
-          <Home  />
-        </Route>
-        <Route path="/cart" component={Cart} exact/>
-      </div>
-    </div>
-  );
-};
+       <Header />
+       <div className="content">
+         <Route path="/" exact>
+           <Home items={this.props.items}/>
+         </Route>
+         <Route path="/cart" component={Cart} exact/>
+       </div>
+     </div>
+    )
+  }
+}
 
 const mapStateToProps = state => {
   return {
@@ -34,7 +59,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setPizzaz: items => dispatch(setPizzaz(items))
+    changePizzaz: items => dispatch(setPizzaz(items))
   }
 }
 

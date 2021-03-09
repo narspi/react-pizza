@@ -1,6 +1,8 @@
-const setPizzaz = (items) => {
+const setPizzaz = items => {
     return {
-        state: 'SET_PIZZAZ',
+        type: 'SET_PIZZAZ',
         payload: items,
     }
 }
+
+export default setPizzaz;
