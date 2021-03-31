@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+
+
 // class Categories extends React.Component {
 //     state = {
 //         activeItem: 0,
@@ -31,13 +33,22 @@ import React, { useState } from 'react';
 //     }
 // }
 
-function Categories({items}) {
+const Categories = React.memo(function Categories({items, onClickItem}) {
+
     const [count, setCount] = useState(null);
+
+    const onSelectItem = (index) => {
+        setCount(index);
+        onClickItem(index);
+    }
+    
+
+
     return (
-        <div className="categories">
+        <div class="categories">
                 <ul>
                     <li 
-                        onClick={()=>{setCount(null)}} 
+                        onClick={()=>{onSelectItem(null)}} 
                         className={count === null ? 'active' : ''}
                     >
                         Все
@@ -45,7 +56,7 @@ function Categories({items}) {
                     {items && items.map( (item,index) => (
                         <li 
                             className={count === index ? 'active' : ''} 
-                            onClick={()=>{setCount(index)}} 
+                            onClick={()=>{onSelectItem(index)}} 
                             key={`${item}_${index}`}
                         >
                             {item}
@@ -54,6 +65,8 @@ function Categories({items}) {
               </ul>
             </div>
     );
-}
+})
 
 export default Categories;
+
+
