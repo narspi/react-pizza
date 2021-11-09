@@ -30,6 +30,14 @@ body {
     grid-template-columns: repeat(4,280px);
     grid-column-gap: 35px;
     justify-content: space-between;
+
+    &--cart {
+      grid-template-columns: 1fr;
+    }
+
+    svg {
+      max-width: 100%;
+    }
   }
 
   &__top {
@@ -45,7 +53,7 @@ body {
 
   &--cart {
     max-width: 820px;
-    margin: 90px auto;
+    margin: 20px auto;
     .content__title {
       margin: 0;
     }
