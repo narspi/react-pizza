@@ -15,7 +15,7 @@ export const fetchPizzaz = (filters) => (dispatch) => {
   dispatch(setLoaded(false));
   axios
     .get(
-      `/pizzas?${
+      `https://my-json-server.typicode.com/narspi/react-pizza/pizzas?${
         category !== null ? "category=" + category : ""
       }&_sort=${sortBy}&_order=desc`
     )
