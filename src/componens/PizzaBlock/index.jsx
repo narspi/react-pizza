@@ -13,7 +13,7 @@ function PizzaBlock({ id, name, imageUrl, price, types, sizes, onClickAddPizza, 
   const [activeSize, setActiveSize] = useState(aviableSizes.indexOf(sizes[0]));
 
   let length;
-  if (addPizza) length = addPizza.length;
+  if (addPizza) length = addPizza.items.length;
 
   const onSelectType = (index) => {
     setActiveType(index);
